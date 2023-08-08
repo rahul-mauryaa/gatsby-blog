@@ -3,8 +3,10 @@ import { Link } from "gatsby";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 // jkkmmj
-const UsingSSR = ({ serverData }) => {
+const UsingSSR = ({data,serverData }) => {
+  const {site} = data;
   const { dogImage } = serverData;
+  // console.log(site,"siteee")
   return (
     <Layout>
       <h1>
@@ -33,6 +35,16 @@ const UsingSSR = ({ serverData }) => {
 };
 
 export const Head = () => <Seo title="Using SSR" />;
+
+export const pageQuery = graphql`
+  query PageData {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 
 export default UsingSSR;
 
