@@ -2,7 +2,8 @@ import * as React from "react";
 import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
-// jkkmmj
+import Image from "../components/image";
+
 const UsingSSR = ({ data, serverData }) => {
   const { site } = data;
   const { dogImage } = serverData;
@@ -17,11 +18,7 @@ const UsingSSR = ({ data, serverData }) => {
         Reload it to see a(nother) random photo from{" "}
         <code>dog.ceo/api/breed/shiba/images/random</code>:
       </p>
-      <img
-        style={{ width: "320px", borderRadius: "var(--border-radius)" }}
-        alt="A random dog"
-        src={dogImage.message}
-      />
+      <Image img={dogImage.message} />
       <p>
         To learn more, head over to our{" "}
         {/* <a href="https://www.gatsbyjs.com/docs/reference/rendering-options/server-side-rendering/">
