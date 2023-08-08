@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 // jkkmmj
-const UsingSSR = ({data,serverData }) => {
-  const {site} = data;
+const UsingSSR = ({ data, serverData }) => {
+  const { site } = data;
   const { dogImage } = serverData;
-  // console.log(site,"siteee")
+  console.log(site, "siteee");
   return (
     <Layout>
       <h1>
@@ -44,7 +44,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 export default UsingSSR;
 
