@@ -1,13 +1,53 @@
-import React from "react"
-import Layout from "../../components/layout"
-import Seo from "../../components/seo"
-import { Link, graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-const Project = ({ data }) => {
-  const projects = data.project.nodes
-  const site = data.site.siteMetadata
-  console.log(data, "data")
+import React from "react";
+import Layout from "../../components/layout";
+import Seo from "../../components/seo";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+const Project = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      project: allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+        nodes {
+          frontmatter {
+            date
+            featuredImg {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 250
+                  height: 250
+                  blurredOptions: { width: 100 }
+                )
+              }
+            }
+            liveSite
+            slug
+            stack
+            thumb {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 250
+                  height: 250
+                  blurredOptions: { width: 100 }
+                )
+              }
+            }
+            title
+          }
+        }
+      }
+      site: site {
+        siteMetadata {
+          contact
+        }
+      }
+    }
+  `);
+
+  const projects = data.project.nodes;
+  const site = data.site.siteMetadata;
+  console.log(data, "data");
   //   console.log(projects, "projects")
+
   return (
     <Layout>
       <div
@@ -30,7 +70,7 @@ const Project = ({ data }) => {
             alignItems: "center",
           }}
         >
-          {projects.map(project => (
+          {projects.map((project) => (
             <Link
               style={{ textDecoration: "none", color: "skyblue" }}
               to={`/projects/${project.frontmatter.slug}`}
@@ -54,47 +94,9 @@ const Project = ({ data }) => {
         <h3 style={{ marginTop: "100px" }}>{site.contact}</h3>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export const Head = () => <Seo title="Projects" />
+export const Head = () => <Seo title="Projects" />;
 
-export const query = graphql`
-  query {
-    project: allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
-      nodes {
-        frontmatter {
-          date
-          featuredImg {
-            childImageSharp {
-              gatsbyImageData(
-                width: 250
-                height: 250
-                blurredOptions: { width: 100 }
-              )
-            }
-          }
-          liveSite
-          slug
-          stack
-          thumb {
-            childImageSharp {
-              gatsbyImageData(
-                width: 250
-                height: 250
-                blurredOptions: { width: 100 }
-              )
-            }
-          }
-          title
-        }
-      }
-    }
-    site: site {
-      siteMetadata {
-        contact
-      }
-    }
-  }
-`
-export default Project
+export default Project;
