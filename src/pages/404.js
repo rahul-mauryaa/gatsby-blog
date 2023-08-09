@@ -1,8 +1,8 @@
-import * as React from "react"
+import * as React from "react";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import { Link } from "gatsby"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import { Link } from "gatsby";
 
 const NotFoundPage = () => (
   <Layout>
@@ -12,8 +12,8 @@ const NotFoundPage = () => (
       go to home page <Link to="/">Home</Link>
     </p>
   </Layout>
-)
+);
 
-export const Head = () => <Seo title="404: Not Found" />
+export const Head = () => <Seo title="404: Not Found" />;
 
-export default NotFoundPage
+export default NotFoundPage;
