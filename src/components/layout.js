@@ -5,12 +5,12 @@
  * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
  */
 
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import * as React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 
-import Header from "./header"
-import "./layout.css"
-import "bootstrap/dist/css/bootstrap.min.css"
+import Header from "./header";
+import "./layout.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <>
@@ -31,22 +31,30 @@ const Layout = ({ children }) => {
           margin: `0 auto`,
           maxWidth: `var(--size-content)`,
           padding: `var(--size-gutter)`,
+          height: "100%",
+          width: "100%",
         }}
       >
         <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-5)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
+      </div>
+      {/* <footer
+        style={{
+          marginTop: `var(--space-5)`,
+          fontSize: `var(--font-sm)`,
+          position: "absolute",
+          bottom: 0,
+
+          marginBottom: "15px",
+        }}
+      >
+        <div style={{ marginLeft: 700 }}>
           © {new Date().getFullYear()} &middot; Built with
           {` `}
           <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
+        </div>
+      </footer> */}
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
