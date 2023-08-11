@@ -9,8 +9,6 @@ function DisplayTodo() {
   const dispatch = useDispatch();
   const [dataa, setData] = useState([]);
   const data = useSelector((state) => state.todos.data);
-  //   console.log(data, "data");
-
   const handelete = async (id) => {
     const res = await dispatch(deleteData(id));
     if (res.type === "deleteData/fulfilled") {
@@ -58,7 +56,7 @@ function DisplayTodo() {
                   placement={"top"}
                   overlay={<Tooltip id={`tooltip-top`}>Delete</Tooltip>}
                 >
-                  <span>
+                  <span style={{ cursor: "pointer" }}>
                     <TiDeleteOutline
                       color="red"
                       size={25}
@@ -72,11 +70,11 @@ function DisplayTodo() {
                   placement={"top"}
                   overlay={<Tooltip id={`tooltip-top`}>Edit</Tooltip>}
                 >
-                  <span>
+                  <span style={{ cursor: "pointer" }}>
                     <LuEdit
                       color="red"
                       size={25}
-                      // onClick={(e) => handleEdit(item.id, e)}
+                      onClick={(e) => handleEdit(item.id, e)}
                     />
                   </span>
                 </OverlayTrigger>

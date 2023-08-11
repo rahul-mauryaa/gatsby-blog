@@ -1,15 +1,15 @@
-import { Link, graphql } from "gatsby"
-import React from "react"
-import Layout from "../components/layout.js"
-import * as styles from "../components/project-details.module.css"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import Seo from "../components/seo.js"
+import { Link, graphql } from "gatsby";
+import React from "react";
+import Layout from "../components/layout.js";
+import * as styles from "../components/project-details.module.css";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import Seo from "../components/seo.js";
 
 export default function ProjectDetails({ data }) {
-  const { html } = data.markdownRemark
+  const { html } = data.markdownRemark;
   const { title, stack, liveSite, featuredImg } =
-    data.markdownRemark.frontmatter
-  console.log(data)
+    data.markdownRemark.frontmatter;
+
   return (
     <Layout>
       <div className={styles.details}>
@@ -49,13 +49,13 @@ export default function ProjectDetails({ data }) {
         />
       </div>
     </Layout>
-  )
+  );
 }
 
 export const Head = ({ data }) => {
-  const { title } = data.markdownRemark.frontmatter
-  return <Seo title={title} />
-}
+  const { title } = data.markdownRemark.frontmatter;
+  return <Seo title={title} />;
+};
 
 export const query = graphql`
   query ProjectDetails($slug: String) {
@@ -73,4 +73,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

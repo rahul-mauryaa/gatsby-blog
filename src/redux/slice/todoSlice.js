@@ -26,7 +26,7 @@ export const fetchdata = createAsyncThunk("fetchdata", async () => {
     "https://64d47344b592423e469421af.mockapi.io/api/todo"
   );
   const result = await response.json();
-  console.log("result==>", result);
+
   return result;
 });
 
@@ -35,7 +35,7 @@ export const fetchdatabyid = createAsyncThunk("fetchdatabyid", async (id) => {
     `https://64d47344b592423e469421af.mockapi.io/api/todo/${id}`
   );
   const result = await response.json();
-  console.log("result==>", result);
+  // console.log("result==>", result);
   return result;
 });
 
@@ -55,13 +55,13 @@ export const deleteData = createAsyncThunk("deleteData", async (id) => {
     throw new Error("Failed to delete data");
   }
 });
-export const editData = createAsyncThunk("editData", async ({ id, data }) => {
+export const editData = createAsyncThunk("editData", async ({ values, id }) => {
   try {
     const response = await fetch(
       `https://64d47344b592423e469421af.mockapi.io/api/todo/${id}`,
       {
         method: "PUT",
-        body: JSON.stringify(data),
+        body: JSON.stringify(values),
         headers: {
           "Content-Type": "application/json",
         },
@@ -106,7 +106,7 @@ const todoSlice = createSlice({
     },
     [insertapi.rejected]: (state, action) => {
       state.isInserting = false;
-      console.log("Erorr", action.payload);
+
       state.isError = true;
     },
     // ****************
@@ -145,10 +145,9 @@ const todoSlice = createSlice({
       state.isDeleting = false;
       const deletedId = action.payload;
       delete state.data[deletedId];
-      console.log("Data deleted with ID:", deletedId);
+      // console.log("Data deleted with ID:", deletedId);
     },
     [deleteData.rejected]: (state, action) => {
-      console.log("Erorr", action.payload);
       state.isDeleting = false;
       state.isError = true;
     },
@@ -164,11 +163,11 @@ const todoSlice = createSlice({
         ...state.data,
         [editData.id]: editData,
       };
-      console.log("Data edit with ID:", editData);
+      // console.log("Data edit with ID:", editData);
     },
     [editData.rejected]: (state, action) => {
       state.isEditing = false;
-      console.log("Erorr", action.payload);
+      // console.log("Erorr", action.payload);
       state.isError = true;
     },
     // **************

@@ -1,13 +1,8 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/
- */
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./src/redux/store";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-/**
- * @type {import('gatsby').GatsbySSR['onRenderBody']}
- */
-
-exports.onRenderBody = ({ setHtmlAttributes }) => {
-  setHtmlAttributes({ lang: `en` });
+export const wrapRootElement = ({ element }) => {
+  return <Provider store={store}>{element}</Provider>;
 };

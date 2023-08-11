@@ -42,7 +42,6 @@ const UsingSSR = () => {
 
   const { site } = sitedata;
   const { message } = data;
-  console.log(site, "siteee");
 
   return (
     <Layout>

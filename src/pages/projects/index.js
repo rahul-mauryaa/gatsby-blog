@@ -45,8 +45,6 @@ const Project = () => {
 
   const projects = data.project.nodes;
   const site = data.site.siteMetadata;
-  console.log(data, "data");
-  //   console.log(projects, "projects")
 
   return (
     <Layout>
