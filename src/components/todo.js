@@ -4,6 +4,7 @@ import { insertapi, fetchdata, reset } from "../redux/slice/todoSlice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import EditTodo from "./edittodo";
+import Seo from "./seo";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
@@ -91,5 +92,7 @@ const Todo = () => {
     </div>
   );
 };
+
+export const Head = () => <Seo title="Todo" />;
 
 export default Todo;
